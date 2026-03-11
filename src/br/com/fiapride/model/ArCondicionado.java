@@ -12,6 +12,37 @@ public class ArCondicionado {
         this.tempmax = tempmax;
     }
 
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public int getTempmax() {
+        return tempmax;
+    }
+
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public void setTempmax(int tempmax) {
+        if (tempmax >= 16 && tempmax <= 30) {
+            this.tempmax = tempmax;
+        } else {
+            System.out.println("Temperatura inválida! Deve estar entre 16 e 30 graus.");
+        }
+    }
+
+
     public void aumentarTemp(int valor) {
         if (valor > 0 && tempmax + valor <= 30) {
             tempmax += valor;
