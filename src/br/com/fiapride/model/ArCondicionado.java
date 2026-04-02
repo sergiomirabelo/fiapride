@@ -6,12 +6,18 @@ public class ArCondicionado {
     private double altura;
     private int tempmax;
 
-    public ArCondicionado(String tipo, double altura, int tempmax) {
+    // 🔥 ASSOCIAÇÃO
+    private ControleRemoto controle;
+
+    // 🔥 CONSTRUTOR
+    public ArCondicionado(String tipo, double altura, int tempmax, ControleRemoto controle) {
         setTipo(tipo);
         setAltura(altura);
         setTempmax(tempmax);
+        this.controle = controle;
     }
 
+    // GETTERS
     public String getTipo() {
         return tipo;
     }
@@ -24,6 +30,11 @@ public class ArCondicionado {
         return tempmax;
     }
 
+    public ControleRemoto getControle() {
+        return controle;
+    }
+
+    // SETTERS COM VALIDAÇÃO
     public void setTipo(String tipo) {
         if (tipo != null && !tipo.isEmpty()) {
             this.tipo = tipo;
@@ -36,7 +47,7 @@ public class ArCondicionado {
         if (altura > 0) {
             this.altura = altura;
         } else {
-            System.out.println("Altura inválida! Deve ser maior que 0.");
+            System.out.println("Altura inválida!");
         }
     }
 
@@ -44,16 +55,17 @@ public class ArCondicionado {
         if (tempmax >= 16 && tempmax <= 30) {
             this.tempmax = tempmax;
         } else {
-            System.out.println("Temperatura inválida! Deve estar entre 16 e 30 graus.");
+            System.out.println("Temperatura inválida! (16 a 30)");
         }
     }
 
+    // MÉTODOS
     public void aumentarTemp(int valor) {
         if (valor > 0 && tempmax + valor <= 30) {
             tempmax += valor;
             System.out.println("Temperatura aumentada para: " + tempmax);
         } else {
-            System.out.println("Valor inválido! Não pode ultrapassar 30°C.");
+            System.out.println("Erro ao aumentar temperatura!");
         }
     }
 
@@ -62,7 +74,7 @@ public class ArCondicionado {
             tempmax -= valor;
             System.out.println("Temperatura diminuída para: " + tempmax);
         } else {
-            System.out.println("Valor inválido! Não pode ser menor que 16°C.");
+            System.out.println("Erro ao diminuir temperatura!");
         }
     }
 }
